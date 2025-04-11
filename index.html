@@ -3,213 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teka-Teki Sambung Kata</title>
+    <title>Pai Official</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to right, #74ebd5, #acb6e5);
-            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #f3f4f6, #e0e7ff);
         }
-        .start-screen {
+        #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
         }
-        .start-button {
-            font-size: 24px;
-            padding: 20px 40px;
-            background: #ff1414;
-            color: white;
-            border: none;
+        .content {
+            position: relative;
+            z-index: 10;
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            margin: 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        @media (min-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        @media (max-width: 1023px) and (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .card {
+            background: #f9f9f9;
+            padding: 1.5rem;
             border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            transition: 0.3s;
         }
-        .start-button:hover {
-            background: #e64a19;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        .container {
-            display: none;
+        .card i {
+            font-size: 2.5rem;
+            color: #00e4ff;
+            margin-bottom: 1rem;
         }
-        .level {
-            font-size: 22px;
-            font-weight: bold;
-            color: white;
-            margin: 15px 0;
+        .card h3 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
         }
-        .game-container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 500px;
+        footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            width: 100%;
+            color: #555;
+            font-size: 0.8rem;
+            z-index: 1000;
         }
-        .board {
-            font-size: 36px;
-            font-weight: bold;
-            background: #3498db;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            min-height: 70px;
-        }
-        .letters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .letter {
-            font-size: 28px;
-            font-weight: bold;
-            width: 65px;
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #2ecc71;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .letter:hover {
-            background: #27ae60;
-        }
-        .correct {
-            background-color: #2ecc71 !important;
-        }
-        .wrong {
-            background-color: #e74c3c !important;
-        }
-        .hidden {
-            display: none;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 16px;
-            color: white;
-            font-weight: bold;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
 
-    <!-- Halaman Awal -->
-    <div class="start-screen">
-        <button class="start-button" onclick="startGame()">Mulai Bermain Sekarang</button>
-    </div>
-
-    <!-- Halaman Game -->
-    <div class="container">
-        <h1 style="color: white;">Teka-Teki Sambung Kata</h1>
-        <div class="level">Level: <span id="level">1</span> / 20</div>
-
-        <div class="game-container">
-            <div class="board" id="board">_ _ _ _ _</div>
-            <div class="letters" id="letters"></div>
+    <div class="content">
+        <h1>Pai Official</h1>
+        <p>Solusi Hosting Terbaik & Terpercaya</p>
+        <div class="grid-container">
+            <div class="card" onclick="openLink('https://wa.me/6283147378085')">
+                <i class="fas fa-dove"></i>
+                <h3>Buy Panel</h3>
+            </div>
+            <div class="card" onclick="openLink('https://wa.me/6283147378085')">
+                <i class="fas fa-crown"></i>
+                <h3>Buy Admin</h3>
+            </div>
+            <div class="card" onclick="openLink('https://wa.me/6283147378085')">
+                <i class="fas fa-dove"></i>
+                <h3>Buy Vps</h3>
+            </div>
+            <div class="card" onclick="openLink('https://wa.me/6283147378085')">
+                <i class="fas fa-crown"></i>
+                <h3>Buy Script</h3>
+            </div>
         </div>
-
-        <div class="footer">Dibuat oleh suaminya Susan (Alpin)</div>
     </div>
 
-    <!-- Audio untuk efek suara -->
-    <audio id="fail-sound">
-        <source src="https://www.myinstants.com/media/sounds/wrong-answer.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="correct-sound">
-        <source src="https://www.myinstants.com/media/sounds/correct.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="win-sound">
-        <source src="https://www.myinstants.com/media/sounds/you-win.mp3" type="audio/mpeg">
-    </audio>
+    <footer>
+        &copy; 2025 Pai Official. All Rights Reserved.<br>
+        <a href="https://wa.me/6283147378085">Contact Me</a>
+    </footer>
 
-    <script>
-        const levels = [
-            "BUKU", "MEJA", "LAPTOP", "MOBIL", "RUMAH", "PINTU", "KURSI", "TAMAN", "SEPEDA", "JENDELA",
-            "PENSIL", "GITAR", "RADIO", "TELEPON", "KOMPUTER", "GELAS", "SENDOK", "KASUR", "LANTAI", "TANGGA"
-        ];
-
-        let currentLevel = 0;
-        const levelText = document.getElementById("level");
-        const board = document.getElementById("board");
-        const lettersContainer = document.getElementById("letters");
-        const failSound = document.getElementById("fail-sound");
-        const correctSound = document.getElementById("correct-sound");
-        const winSound = document.getElementById("win-sound");
-
-        function shuffleArray(array) {
-            return array.sort(() => Math.random() - 0.5);
-        }
-
-        function loadLevel(level) {
-            board.textContent = "_ ".repeat(levels[level].length).trim();
-            lettersContainer.innerHTML = "";
-            levelText.textContent = level + 1;
-
-            let word = levels[level];
-            let shuffledLetters = shuffleArray(word.split(""));
-
-            shuffledLetters.forEach(letter => {
-                const letterDiv = document.createElement("div");
-                letterDiv.classList.add("letter");
-                letterDiv.textContent = letter;
-                letterDiv.addEventListener("click", () => selectLetter(letterDiv, word));
-                lettersContainer.appendChild(letterDiv);
-            });
-        }
-
-        let selectedWord = "";
-        function selectLetter(letterDiv, correctWord) {
-            selectedWord += letterDiv.textContent;
-            board.textContent = selectedWord + "_ ".repeat(correctWord.length - selectedWord.length).trim();
-            letterDiv.classList.add("hidden");
-
-            if (selectedWord.length === correctWord.length) {
-                if (selectedWord === correctWord) {
-                    correctSound.play();
-                    board.classList.add("correct");
-                    setTimeout(() => {
-                        currentLevel++;
-                        if (currentLevel < levels.length) {
-                            selectedWord = "";
-                            loadLevel(currentLevel);
-                            board.classList.remove("correct");
-                        } else {
-                            winSound.play();
-                            alert("Selamat! Anda telah menyelesaikan semua level!");
-                        }
-                    }, 1000);
-                } else {
-                    failSound.play();
-                    board.classList.add("wrong");
-                    setTimeout(() => {
-                        selectedWord = "";
-                        loadLevel(currentLevel);
-                        board.classList.remove("wrong");
-                    }, 1000);
-                }
-            }
-        }
-
-        function startGame() {
-            document.querySelector(".start-screen").style.display = "none";
-            document.querySelector(".container").style.display = "block";
-            loadLevel(currentLevel);
-        }
-    </script>
-
+    <script src="/style/index.js"></script>
 </body>
 </html>
