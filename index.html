@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Admin Security</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: white;
+      font-family: 'Arial Rounded MT Bold', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 250px;
+    }
+    button {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    #addNomorSection {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login Admin Security</h1>
+  <div id="loginSection">
+    <label>Masukan User ID</label>
+    <input type="text" id="userID" placeholder="Masukan ID User" />
+    <label>Masukan Password</label>
+    <input type="password" id="password" placeholder="Masukan Password" />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="addNomorSection">
+    <label>Masukan Nomor</label>
+    <input type="text" id="nomor" placeholder="Contoh: 6281234567890" />
+    <button onclick="addNomor()">Tambah Nomor</button>
+    <p id="status"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
