@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Admin Security</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h2>Login Admin</h2>
+    <div id="form-login">
+      <input type="text" id="username" placeholder="Username" required/>
+      <input type="password" id="password" placeholder="Password" required/>
+      <button onclick="login()">Login</button>
+      <p>Belum punya akun? <a href="#" onclick="toggleForm('register')">Daftar</a></p>
+    </div>
+    <div id="form-register" style="display:none;">
+      <input type="text" id="newuser" placeholder="Username baru" required/>
+      <input type="password" id="newpass" placeholder="Password baru" required/>
+      <button onclick="register()">Daftar</button>
+      <p>Sudah punya akun? <a href="#" onclick="toggleForm('login')">Login</a></p>
+    </div>
+  </div>
+
+  <div id="dashboard" style="display:none;">
+    <h2>Selamat datang, <span id="displayUser"></span></h2>
+    <input type="text" id="nomor" placeholder="Masukkan nomor (cth: 628xxx)"/>
+    <button onclick="addNomor()">Upload Nomor</button>
+    <button onclick="logout()">Logout</button>
+    <button onclick="toggleMode()">Ganti Mode</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
