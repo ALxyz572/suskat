@@ -1,9 +1,9 @@
 const userID = "admin";
 const password = "12345";
-const GITHUB_TOKEN = "GANTI_DENGAN_TOKEN_KAMU";
-const REPO = "Revo";
-const OWNER = "GITHUB_USERNAME_KAMU";
-const FILE_NAME = "database.json";
+const GITHUB_TOKEN = "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";
+const REPO = "Alpin";
+const OWNER = "ALxyz572";
+const FILE_NAME = "AlpinDTB.json";
 const BRANCH = "main";
 
 function login() {
