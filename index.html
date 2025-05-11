@@ -1,0 +1,353 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
+  &lt;title&gt;About Alpin Developer&lt;/title&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;style&gt;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: &#39;Poppins&#39;, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .container, .main-content {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .typing-text {
+      font-size: 1rem;
+      color: #ddd;
+      margin-bottom: 1.5rem;
+      min-height: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.03);
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f2027;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      animation: fadeOut 2s 2s forwards;
+    }
+
+    .loading-screen h1 {
+      font-size: 2rem;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .next-button {
+      background: linear-gradient(135deg, #00c9ff, #92fe9d);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .next-button:hover {
+      transform: scale(1.05);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .lyrics {
+      font-size: 0.85rem;
+      color: #ccc;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .product {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .product h3 {
+      margin: 0.5rem 0;
+    }
+
+    .product p {
+      margin-bottom: 1rem;
+      color: #ddd;
+      font-size: 0.9rem;
+    }
+
+    .product .next-button {
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;loading-screen&quot; id=&quot;loading&quot;&gt;
+    &lt;h1&gt;Welcome, Alpin Developer&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;container&quot; id=&quot;intro&quot;&gt;
+    &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; alt=&quot;Profile&quot; class=&quot;profile-img&quot;&gt;
+    &lt;h1&gt;Alpin Developer&lt;/h1&gt;
+    &lt;div class=&quot;typing-text&quot; id=&quot;introTyping&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;button-group&quot;&gt;
+      &lt;button class=&quot;next-button&quot; onclick=&quot;goToMain()&quot;&gt;Hi Alpin Developer&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;main-content&quot; id=&quot;main&quot;&gt;
+    &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; alt=&quot;Profile&quot; class=&quot;profile-img&quot;&gt;
+    &lt;h1&gt;Alpin Developer&lt;/h1&gt;
+    &lt;div class=&quot;typing-text&quot; id=&quot;mainTyping&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;links&quot;&gt;
+      &lt;a href=&quot;https://wa.me/6287762544501&quot; target=&quot;_blank&quot;&gt;
+        &lt;img src=&quot;https://cdn-icons-png.flaticon.com/512/220/220236.png&quot; class=&quot;icon&quot; /&gt; WhatsApp
+      &lt;/a&gt;
+      &lt;a href=&quot;https://youtube.com/@alpindevv&quot; target=&quot;_blank&quot;&gt;
+        &lt;img src=&quot;https://cdn-icons-png.flaticon.com/512/1384/1384060.png&quot; class=&quot;icon&quot; /&gt; YouTube
+      &lt;/a&gt;
+      &lt;a href=&quot;https://github.com/ALxyz572&quot; target=&quot;_blank&quot;&gt;
+        &lt;img src=&quot;https://cdn-icons-png.flaticon.com/512/733/733553.png&quot; class=&quot;icon&quot; /&gt; GitHub
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;button-group&quot;&gt;
+      &lt;button class=&quot;next-button&quot; onclick=&quot;showSection(&#39;shop&#39;)&quot;&gt;Shop&lt;/button&gt;
+      &lt;button class=&quot;next-button&quot; onclick=&quot;showSection(&#39;payment&#39;)&quot;&gt;Payment&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;lyrics&quot; id=&quot;lyrics&quot;&gt;Doain usaha gua lancar :)&lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;
+      &lt;p&gt;© Alpin Developer - 2025&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;main-content&quot; id=&quot;shop&quot; style=&quot;display:none;&quot;&gt;
+    &lt;h1&gt;Shop&lt;/h1&gt;
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; alt=&quot;Product&quot; class=&quot;product-img&quot;&gt;
+      &lt;h3&gt;Bot Telegram&lt;/h3&gt;
+      &lt;p&gt;Bot Custom Sesuai Kebutuhanmu, Bot Cpanel, Bug, Dll.&lt;/p&gt;
+      &lt;a href=&quot;https://wa.me/6287762544501?text=Halo%20saya%20mau%20beli%20Bot%20Telegram&quot; target=&quot;_blank&quot; class=&quot;next-button&quot;&gt;Buy&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; alt=&quot;Product&quot; class=&quot;product-img&quot;&gt;
+      &lt;h3&gt;Bot WhatsApp&lt;/h3&gt;
+      &lt;p&gt;Bot Custom Sesuai Kebutuhanmu, Bot Cpanel, Bug, Dll.&lt;/p&gt;
+      &lt;a href=&quot;https://wa.me/6287762544501?text=Halo%20saya%20mau%20beli%20Bot%20Whatsapp&quot; target=&quot;_blank&quot; class=&quot;next-button&quot;&gt;Buy&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; alt=&quot;Product&quot; class=&quot;product-img&quot;&gt;
+      &lt;h3&gt;Jasa Pembuatan Script&lt;/h3&gt;
+      &lt;p&gt;Script Custom Sesuai Kebutuhanmu, Bot Cpanel, Bug, Dll.&lt;/p&gt;
+      &lt;a href=&quot;https://wa.me/6287762544501?text=Halo%20saya%20mau%20beli%20jasa%20bikin%20Script&quot; target=&quot;_blank&quot; class=&quot;next-button&quot;&gt;Buy&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; alt=&quot;Product&quot; class=&quot;product-img&quot;&gt;
+      &lt;h3&gt;Jasa Website&lt;/h3&gt;
+      &lt;p&gt;Web Store, Portofolio, Dll.&lt;/p&gt;
+      &lt;a href=&quot;https://wa.me/6287762544501?text=Halo%20saya%20mau%20pesan%20Jasa%20Website&quot; target=&quot;_blank&quot; class=&quot;next-button&quot;&gt;Buy&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;button class=&quot;next-button&quot; onclick=&quot;backToMain()&quot;&gt;Back&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;main-content&quot; id=&quot;payment&quot; style=&quot;display:none;&quot;&gt;
+    &lt;h1&gt;Payment Alpin Developer&lt;/h1&gt;
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; class=&quot;product-img&quot; alt=&quot;Dana&quot;&gt;
+      &lt;h3&gt;Dana&lt;/h3&gt;
+      &lt;p&gt;Alpin Developer&lt;/p&gt;
+      &lt;button class=&quot;next-button&quot; onclick=&quot;copyNumber(&#39;6283120589335&#39;)&quot;&gt;Copy&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; class=&quot;product-img&quot; alt=&quot;OVO&quot;&gt;
+      &lt;h3&gt;OVO&lt;/h3&gt;
+      &lt;p&gt;Alpin Developer&lt;/p&gt;
+      &lt;button class=&quot;next-button&quot; onclick=&quot;copyNumber(&#39;6287762544501&#39;)&quot;&gt;Copy&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;product&quot;&gt;
+      &lt;img src=&quot;https://files.catbox.moe/vq0cr1.jpg&quot; class=&quot;product-img&quot; alt=&quot;GoPay&quot;&gt;
+      &lt;h3&gt;GoPay&lt;/h3&gt;
+      &lt;p&gt;Alpin Developer&lt;/p&gt;
+      &lt;button class=&quot;next-button&quot; onclick=&quot;copyNumber(&#39;6287762544501&#39;)&quot;&gt;Copy&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;div style=&quot;margin-top: 3rem; text-align: center;&quot;&gt;
+    &lt;h2 style=&quot;margin-bottom: 1rem;&quot;&gt;Scan QRIS Untuk Pembayaran&lt;/h2&gt;
+    &lt;img src=&quot;https://files.catbox.moe/nlks1z.jpg&quot; alt=&quot;QRIS&quot; style=&quot;max-width: 300px; width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);&quot; /&gt;
+  &lt;/div&gt;
+    &lt;button class=&quot;next-button&quot; onclick=&quot;backToMain()&quot;&gt;Back&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;audio id=&quot;audio&quot; src=&quot;https://files.catbox.moe/urh1wr.mp4&quot; preload=&quot;auto&quot;&gt;&lt;/audio&gt;
+
+  &lt;script&gt;
+    const loading = document.getElementById(&#39;loading&#39;);
+    const intro = document.getElementById(&#39;intro&#39;);
+    const main = document.getElementById(&#39;main&#39;);
+    const audio = document.getElementById(&#39;audio&#39;);
+
+    const texts = [&quot;Web Developer&quot;, &quot;Bot Developer&quot;, &quot;Attacker&quot;];
+    
+    function typeText(el, words) {
+      let index = 0, char = 0, isAttacker = false;
+      function type() {
+        if (!isAttacker &amp;&amp; index &lt; words.length) {
+          if (char &lt;= words[index].length) {
+            el.textContent = words[index].slice(0, char++);
+            setTimeout(type, 100);
+          } else {
+            index++; char = 0;
+            setTimeout(type, 600);
+          }
+        } else if (!isAttacker) {
+          isAttacker = true;
+          el.innerHTML += &quot;&lt;br&gt;&lt;span id=&#39;TexT&#39;&gt;&lt;/span&gt;&quot;;
+          typeAttacker();
+        }
+      }
+      function typeAttacker() {
+        let TexT = &quot;Dibuat Oleh Alpin Developer&quot;;
+        let aText = document.getElementById(&quot;TexT&quot;);
+        let aIndex = 0;
+        function aType() {
+          if (aIndex &lt;= TexT.length) {
+            aText.textContent = TexT.slice(0, aIndex++);
+            setTimeout(aType, 120);
+          }
+        }
+        aType();
+      }
+      type();
+    }
+
+    window.onload = () =&gt; {
+      setTimeout(() =&gt; {
+        loading.style.display = &#39;none&#39;;
+        intro.style.display = &#39;block&#39;;
+        typeText(document.getElementById(&quot;introTyping&quot;), texts);
+      }, 2000);
+    };
+
+    function goToMain() {
+      intro.style.display = &#39;none&#39;;
+      main.style.display = &#39;block&#39;;
+      audio.play();
+      typeText(document.getElementById(&quot;mainTyping&quot;), texts);
+    }
+
+    function showSection(section) {
+      document.querySelectorAll(&#39;.main-content&#39;).forEach(el =&gt; el.style.display = &#39;none&#39;);
+      document.getElementById(section).style.display = &#39;block&#39;;
+    }
+
+    function backToMain() {
+      document.querySelectorAll(&#39;.main-content&#39;).forEach(el =&gt; el.style.display = &#39;none&#39;);
+      main.style.display = &#39;block&#39;;
+    }
+
+    function copyNumber(number) {
+      navigator.clipboard.writeText(number);
+      alert(&quot;Nomor berhasil disalin!&quot;);
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
